@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+    app:
+        build:
+            context: ./docker/app/
+        restart: always
+        ports:
+            - "80:80"
+        volumes:
+            - ./app:/var/www
+        environment:
+            - "S3_SERVER=http://minio:9000"
+            - "S3_PUBLIC=http://localhost:9000"
+            - "S3_ACCESS_KEY=FN88CVZP6H0IILD7FCOS"
+            - "S3_SECRET_KEY=LSsflJAQWubEzp2maAMHUZWisJGIfGKt4/YcuZHd"
+            - "S3_REGION=us-east-1"
+            - "S3_BUCKET=demo"
+
+    minio:
+        image: minio/minio
+        restart: always
+        ports:
+            - "9000:9000" # Access stored files from host machine
+        volumes:
+            - ./.minio:/data
+        environment:
+            - "MINIO_ACCESS_KEY=FN88CVZP6H0IILD7FCOS"
+            - "MINIO_SECRET_KEY=LSsflJAQWubEzp2maAMHUZWisJGIfGKt4/YcuZHd"
+        command: server /data
