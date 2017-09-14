@@ -6,7 +6,7 @@ services:
             context: ./docker/app/
         restart: always
         ports:
-            - "80:80"
+            - "8888:80"
         volumes:
             - ./app:/var/www
         environment:
