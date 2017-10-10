@@ -1,4 +1,4 @@
-# Minio demo using docker & PHP
+# Docker application using Minio & PHP backend
 
 Playground project to work with [Minio Cloud Storage](https://minio.io/).
 
@@ -16,8 +16,8 @@ Features:
 
 1. Install APP dependencies
 2. Update configuration (environment variables, ports) in `docker-compose.yml`
-3. Start containers
-4. Browse http://localhost:8888 (use the configured port)
+3. Start the containers
+4. Browse http://localhost/index.php
 
 ### Install APP dependencies
 
@@ -31,24 +31,28 @@ docker run --rm --interactive --tty \
     composer install
 ```
 
-### Start containers
+### Start the containers
+
+Different alternatives:
 
 ```bash
-docker-compose up # add "-d" to run containers in background
+# Build (if necessary) & start containers (CTRL+C to stop them)
+docker-compose up
+
+# Build (if necessary) & start containers in background mode (stop them using: docker-compose down)
+docker-compose up -d
+
+# Rebuild & start containers
+docker-compose up --build
 ```
 
-### Stop containers
+## Cleanup
+
+- Stop & remove containers & networks (no named volumes used)
+- Remove uploaded files
 
 ```bash
-docker-compose down --volumes
-```
-
-## Clean up
-
-```bash
-docker-compose down --volumes
-docker system prune -f
-docker system df -v
+docker-compose down
 
 # Remove uploaded files
 sudo find .minio -mindepth 1 -maxdepth 1 -type d -exec rm -r {} \;

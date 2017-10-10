@@ -2,11 +2,11 @@ version: '3'
 
 services:
     app:
-        build:
-            context: ./docker/app/
+        image: php:7-cli
+        container_name: demo-app
         restart: always
         ports:
-            - "8888:80"
+            - "80:80"
         volumes:
             - ./app:/var/www
         environment:
@@ -16,9 +16,11 @@ services:
             - "S3_SECRET_KEY=LSsflJAQWubEzp2maAMHUZWisJGIfGKt4/YcuZHd"
             - "S3_REGION=us-east-1"
             - "S3_BUCKET=demo"
+        entrypoint: php -S 0.0.0.0:80 -t /var/www
 
     minio:
         image: minio/minio
+        container_name: demo-minio
         restart: always
         ports:
             - "9000:9000" # Access stored files from host machine

@@ -65,12 +65,12 @@ $objects = $client->getIterator('ListObjects', [
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <title>Docker application using Minio &amp; PHP backend</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
 <body>
   <div class="container">
-    <h1>Minio playground</h1>
+    <h1>Docker application using Minio &amp; PHP backend</h1>
 
     <?php foreach ($messages as $message): ?>
       <div class="alert alert-<?php echo $message[1]; ?>">
